@@ -20,8 +20,13 @@ jobs:
       run: |
         # Count commits by user and format as markdown
         git shortlog -s -n -e > commit_count.txt
+        echo "Commit count data:"
+        cat commit_count.txt
+
         echo -e "\n## Commit Count by User\n" > commit_count_section.txt
         cat commit_count.txt >> commit_count_section.txt
+        echo "Commit count section:"
+        cat commit_count_section.txt
 
         # Read the README.md file
         README_CONTENT=$(cat README.md)

@@ -23,11 +23,16 @@ jobs:
         echo -e "\n## Commit Count by User\n" > commit_count_section.txt
         cat commit_count.txt >> commit_count_section.txt
 
-        # Add the commit count section to README.md
+        # Read the README.md file
+        README_CONTENT=$(cat README.md)
+
+        # Remove old commit count section if it exists
         if grep -q "## Commit Count by User" README.md; then
-          # Replace the existing section
-          sed -i '/## Commit Count by User/,$d' README.md
+          README_CONTENT=$(sed '/## Commit Count by User/,$d' README.md)
         fi
+
+        # Add the commit count section to the README content
+        echo "$README_CONTENT" > README.md
         cat commit_count_section.txt >> README.md
 
     - name: Commit results
